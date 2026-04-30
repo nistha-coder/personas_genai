@@ -10,7 +10,7 @@
 
 ## Screenshots
 
-> *(Add screenshots here before submission)*
+
 
 | Home / Persona Switcher | Chat with Anshuman | Mobile View |
 |---|---|---|
@@ -73,7 +73,7 @@ persona-chatbot/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/persona-chatbot.git
+git clone https://github.com/nistha-coder/personas_genai
 cd persona-chatbot
 ```
 
