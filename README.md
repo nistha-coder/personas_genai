@@ -74,7 +74,6 @@ persona-chatbot/
 
 ```bash
 git clone https://github.com/nistha-coder/personas_genai
-cd persona-chatbot
 ```
 
 ---
