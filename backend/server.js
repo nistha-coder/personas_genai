@@ -25,16 +25,6 @@ const client = hasGroqKey
     })
   : null;
 
-// OpenAI config (commented as requested):
-// const client = new OpenAI({
-//   apiKey: process.env.OPENAI_API_KEY
-// });
-
-// Gemini config (commented as requested):
-// const client = new OpenAI({
-//   apiKey: process.env.GEMINI_API_KEY,
-//   baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/"
-// });
 
 app.get("/", (_req, res) => {
   res.send("Backend is running");
@@ -63,10 +53,7 @@ app.post("/chat", async (req, res) => {
 
     const response = await client.chat.completions.create({
       model: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
-      // OpenAI model option (commented):
-      // model: process.env.OPENAI_MODEL || "gpt-4o-mini",
-      // Gemini model option (commented):
-      // model: process.env.GEMINI_MODEL || "gemini-2.0-flash",
+     
       messages: [
         { role: "system", content: personaPrompts[selectedPersona] },
         { role: "user", content: message.trim() }
