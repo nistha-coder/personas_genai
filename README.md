@@ -1,130 +1,234 @@
 # Persona-Based AI Chatbot
 
-A submission-ready Prompt Engineering assignment project using HTML, CSS, JavaScript, Node.js, and Groq API.
+> A prompt engineering project built for **Scaler Academy — Assignment 01**.  
+> Chat with AI-powered personas of **Anshuman Singh**, **Abhimanyu Saxena**, and **Kshitij Mishra** — crafted with researched system prompts, few-shot examples, and chain-of-thought instructions.
 
-## Personas Included
+🔗 **Frontend (Netlify):** https://personagenai.netlify.app/  
+🖥️ **Backend API (Render):** https://personas-genai.onrender.com 
 
-- Anshuman Singh
-- Abhimanyu Saxena
-- Kshitij Mishra
+---
+
+## Screenshots
+
+> *(Add screenshots here before submission)*
+
+| Home / Persona Switcher | Chat with Anshuman | Mobile View |
+|---|---|---|
+| ![home](screenshots/home.png) | ![anshuman](screenshots/anshuman.png) | ![mobile](screenshots/mobile.png) |
+
+---
 
 ## Features
 
-- Persona switcher for all 3 personalities
-- Chat reset when persona changes
-- Active persona clearly visible in UI
-- Suggestion chips (quick-start questions) per persona
-- Typing indicator while waiting for API
-- Graceful API error handling
-- Mobile and desktop responsive UI
-- Distinct system prompts with:
-  - persona description
-  - 3 few-shot examples each
-  - chain-of-thought instruction (internal reasoning)
-  - output format instruction
-  - constraints
+- 🎭 **3 distinct personas** — each with a fully researched system prompt
+- 🔄 **Persona switcher** — switching resets the conversation automatically
+- 💡 **Suggestion chips** — quick-start questions per persona
+- ⌨️ **Typing indicator** — shown while waiting for API response
+- ⚠️ **Graceful error handling** — rate limits and failures shown as friendly messages
+- 📱 **Responsive UI** — works on mobile and desktop
+
+---
 
 ## Project Structure
 
-```txt
+```
 persona-chatbot/
 ├── backend/
-│   ├── .env.example
+│   ├── .env.example        # Environment variable template
 │   ├── package.json
-│   ├── personas.js
-│   └── server.js
+│   ├── personas.js         # All 3 system prompts
+│   └── server.js           # Express API server
 ├── frontend/
 │   ├── index.html
-│   ├── script.js
+│   ├── script.js           # Chat logic + API calls
 │   └── style.css
-├── .env.example
-├── prompts.md
-├── reflection.md
+├── prompts.md              # Annotated system prompts
+├── reflection.md           # 300–500 word reflection
 └── README.md
 ```
 
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | HTML, CSS, Vanilla JavaScript |
+| Backend | Node.js, Express |
+| AI API | Groq (llama-3.1-8b-instant) |
+| Deployment — Frontend | Netlify |
+| Deployment — Backend | Render |
+
+---
+
 ## Local Setup
 
-### 1) Backend setup
+### Prerequisites
+
+- Node.js v18+
+- A free [Groq API key](https://console.groq.com)
+
+---
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/persona-chatbot.git
+cd persona-chatbot
+```
+
+---
+
+### 2. Backend setup
 
 ```bash
 cd backend
 npm install
 ```
 
-Create `backend/.env` from `backend/.env.example` and add your key:
+Create a `.env` file from the example:
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and fill in your key:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 GROQ_MODEL=llama-3.1-8b-instant
-# OPENAI_API_KEY=your_openai_api_key_here
-# OPENAI_MODEL=gpt-4o-mini
-# GEMINI_API_KEY=your_gemini_api_key_here
-# GEMINI_MODEL=gemini-2.0-flash
 PORT=5000
 FRONTEND_ORIGIN=http://localhost:5500
 ```
 
-Run backend:
+Start the backend:
 
 ```bash
 npm start
+# or for development with auto-reload:
+npm run dev
 ```
 
-### 2) Frontend setup
+Backend runs at: `http://localhost:5000`
 
-Open `frontend/index.html` using Live Server (recommended on port 5500), or any local static server.
+---
 
-## API
+### 3. Frontend setup
 
-- `GET /health` -> health check
-- `POST /chat` -> send chat message
+Open `frontend/index.html` using **VS Code Live Server** (recommended, runs on port 5500).
 
-Request body:
+Or serve it with any static server:
 
+```bash
+npx serve frontend
+```
+
+Make sure `API_BASE_URL` in `frontend/script.js` points to your local backend:
+
+```js
+const API_BASE_URL = "http://localhost:5000";
+```
+
+---
+
+## API Reference
+
+### `GET /health`
+
+Health check — returns `{ ok: true }` if the server is running.
+
+---
+
+### `POST /chat`
+
+Send a message to a persona.
+
+**Request body:**
 ```json
 {
-  "message": "How do I stay consistent?",
+  "message": "How do I stay consistent with DSA practice?",
   "persona": "kshitij"
 }
 ```
 
+**Persona values:** `anshuman` | `abhimanyu` | `kshitij`
+
+**Response:**
+```json
+{
+  "reply": "Consistency comes from systems, not motivation. Here's what I'd do..."
+}
+```
+
+**Error response:**
+```json
+{
+  "reply": "Rate limit reached. Please wait a minute and try again."
+}
+```
+
+---
+
 ## Deployment
 
-### Frontend
-- Deploy `frontend` folder to Netlify or Vercel.
+### Backend → Render
 
-### Backend
-- Deploy `backend` to Render/Railway.
-- Set environment variables in dashboard:
-  - `GROQ_API_KEY`
-  - `GROQ_MODEL`
-  - (optional) `OPENAI_API_KEY`
-  - (optional) `OPENAI_MODEL`
-  - (optional) `GEMINI_API_KEY`
-  - (optional) `GEMINI_MODEL`
-  - `FRONTEND_ORIGIN`
+1. Go to [render.com](https://render.com) → **New Web Service**
+2. Connect your GitHub repo
+3. Set **Root Directory** to `backend`
+4. Set **Build Command** to `npm install`
+5. Set **Start Command** to `npm start`
+6. Add environment variables in the Render dashboard:
 
-After deployment, update `API_BASE_URL` in `frontend/script.js` with your deployed backend URL.
+| Key | Value |
+|---|---|
+| `GROQ_API_KEY` | Your Groq API key |
+| `GROQ_MODEL` | `llama-3.1-8b-instant` |
+| `FRONTEND_ORIGIN` | Your Netlify URL |
+| `PORT` | `5000` |
 
-## Submission Checklist
+7. Deploy — Render gives you a URL like `https://your-app.onrender.com`
 
-- [ ] Public GitHub repo
-- [ ] Live project URL
-- [ ] `prompts.md` with all 3 annotated prompts
-- [ ] `reflection.md` (300-500 words)
-- [ ] `.env.example` present
-- [ ] No real API key in repo
-- [ ] Persona switching works and resets chat
-- [ ] API errors handled gracefully
-- [ ] Mobile responsive UI
+---
 
-## Screenshots
+### Frontend → Netlify
 
-Add screenshots here before final submission:
+1. Go to [netlify.com](https://netlify.com) → **Add new site → Import from Git**
+2. Connect your GitHub repo
+3. Set **Publish directory** to `frontend`
+4. Deploy — Netlify gives you a URL like `https://your-app.netlify.app`
 
-- Home screen with persona switcher
-- Chat with Anshuman
-- Chat with Abhimanyu
-- Chat with Kshitij
-- Mobile view
+---
+
+### After deployment
+
+Update `API_BASE_URL` in `frontend/script.js`:
+
+```js
+const API_BASE_URL = "https://your-app.onrender.com";
+```
+
+Push the change — Netlify auto-redeploys.
+
+---
+
+## Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `GROQ_API_KEY` | ✅ Yes | API key from console.groq.com |
+| `GROQ_MODEL` | ✅ Yes | Model name, e.g. `llama-3.1-8b-instant` |
+| `PORT` | No | Server port (default: 5000) |
+| `FRONTEND_ORIGIN` | No | Allowed CORS origin |
+| `OPENAI_API_KEY` | No | Optional OpenAI key |
+| `OPENAI_MODEL` | No | Optional OpenAI model |
+| `GEMINI_API_KEY` | No | Optional Gemini key |
+| `GEMINI_MODEL` | No | Optional Gemini model |
+
+> ⚠️ Never commit your `.env` file. Only `.env.example` should be in the repo.
+
+---
+
+## License
+
+MIT
