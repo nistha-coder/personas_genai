@@ -1,4 +1,4 @@
-# Reflection (Prompt Engineering Assignment)
+# Reflection
 
 Building this persona-based chatbot made me understand that prompt engineering is less about writing fancy sentences and more about designing behavior. At first, my prompts were short and generic, and the responses from the model sounded similarly generic. They were technically correct but not persona-specific. Once I added structured persona descriptions, communication style notes, and constraints, the responses became much more aligned with each person. This directly demonstrated the GIGO principle: if the input prompt is shallow, the output quality is shallow as well.
 
