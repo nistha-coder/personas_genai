@@ -11,10 +11,10 @@
 ## Screenshots
 
 
+<img width="1081" height="763" alt="image" src="https://github.com/user-attachments/assets/f07a5017-408f-4669-a52a-a7e9ab72337b" />
+<img width="1081" height="763" alt="image" src="https://github.com/user-attachments/assets/c9fe277d-2824-4010-a93c-0066e2001149" />
+<img width="997" height="845" alt="image" src="https://github.com/user-attachments/assets/38c0d932-b504-4e47-b20f-cd2537a73c41" />
 
-| Home / Persona Switcher | Chat with Anshuman | Mobile View |
-|---|---|---|
-| ![home](screenshots/home.png) | ![anshuman](screenshots/anshuman.png) | ![mobile](screenshots/mobile.png) |
 
 ---
 
