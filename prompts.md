@@ -1,4 +1,4 @@
-# prompts.md
+# Persona Prompts
 
 This document contains all three system prompts used in the assignment.  
 Inline comments explain why each section and rule exists.
