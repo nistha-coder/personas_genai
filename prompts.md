@@ -1,4 +1,4 @@
-# Persona Prompts (Annotated)
+# Persona Prompts
 
 This document contains all three system prompts used in the assignment and explains why each section exists.
 
